@@ -7,7 +7,7 @@ pipeline {
         stage('Run Postman Tests') {
             steps {
                 sh """
-                newman run collection.json -e ${ENVIRONMENT}.json -r cli,html --reporter-html-export output/report.html
+                newman run collection.json -e ${ENVIRONMENT}.json -r cli,html --reporter-html-export output/report.html --bail
                 """
             }
         }

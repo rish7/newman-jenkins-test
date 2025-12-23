@@ -1,0 +1,550 @@
+{
+	"info": {
+		"_postman_id": "47c78492-28ee-4347-bc99-eaee89f6e82f",
+		"name": "postcodes.ioAPICollection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2693483"
+	},
+	"item": [
+		{
+			"name": "Bulk Postcode Lookup",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const postcodes = [\r",
+							"   \r",
+							"    \"GL7 1AA\", \"IV1 1AA\", \"SW2 1TL\", \"GL1 1RA\", \"SW1 2AA\",\r",
+							"    \"MK1 1FD\", \"SW1 1BB\", \"LA1 1AA\", \"LD1 1AA\", \"GL7 1TL\",\r",
+							"  ];\r",
+							"\r",
+							"function getRandomItem(array) {\r",
+							"    return array[Math.floor(Math.random() * array.length)];\r",
+							"}\r",
+							"\r",
+							"let randomPostcode1 = getRandomItem(postcodes);\r",
+							"let randomPostcode2 = getRandomItem(postcodes);\r",
+							"let randomPostcode3 = getRandomItem(postcodes);\r",
+							"\r",
+							"//random postcode setter\r",
+							"pm.environment.set(\"randomNewPostcode1\", randomPostcode1);\r",
+							"pm.environment.set(\"randomNewPostcode2\", randomPostcode2);\r",
+							"pm.environment.set(\"randomNewPostcode3\", randomPostcode3);"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Assert response body is an object\", function () {\r",
+							"     pm.expect(jsonData).to.be.an('object');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Assert response status code exists and is indeed 200\", function () {\r",
+							"    pm.expect(jsonData.status).to.exist;\r",
+							"    pm.expect(jsonData.status).to.equal(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"postcodes\": [\"{{randomNewPostcode1}}\", \"{{randomNewPostcode2}}\", \"{{randomNewPostcode3}}\"]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URI}}/postcodes",
+					"host": [
+						"{{BASE_URI}}"
+					],
+					"path": [
+						"postcodes"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200 OK",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"postcodes\": [\"{{randomNewPostcode1}}\", \"{{randomNewPostcode2}}\", \"{{randomNewPostcode3}}\"]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URI}}/postcodes",
+							"host": [
+								"{{BASE_URI}}"
+							],
+							"path": [
+								"postcodes"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sat, 26 Oct 2024 07:15:06 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-gnu",
+							"value": "Michael J Blanchard"
+						},
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"499-vD4dWYxic16zdOeN/jjdUcefACw\""
+						},
+						{
+							"key": "cf-cache-status",
+							"value": "DYNAMIC"
+						},
+						{
+							"key": "Report-To",
+							"value": "{\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=WyVMuBTt9InUcn2br1jEk691qru1NMOz0FURWa53%2BBt1aqi9rapiQzDlC%2B5%2BVpEdWsP4%2F%2BcZeUV3CY9EeGtAqbkJQCxFU6sSK0F5fBe9fiOL5r4MG8REPZDaRvFfTW2LdCc%3D\"}],\"group\":\"cf-nel\",\"max_age\":604800}"
+						},
+						{
+							"key": "NEL",
+							"value": "{\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}"
+						},
+						{
+							"key": "Server",
+							"value": "cloudflare"
+						},
+						{
+							"key": "CF-RAY",
+							"value": "8d88a73fff6c081e-IAD"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "br"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": 200,\n    \"result\": [\n        {\n            \"query\": \"BN1 1AA\",\n            \"result\": {\n                \"postcode\": \"BN1 1AA\",\n                \"quality\": 1,\n                \"eastings\": 531040,\n                \"northings\": 104624,\n                \"country\": \"England\",\n                \"nhs_ha\": \"South East Coast\",\n                \"longitude\": -0.140818,\n                \"latitude\": 50.826334,\n                \"european_electoral_region\": \"South East\",\n                \"primary_care_trust\": \"Brighton and Hove City\",\n                \"region\": \"South East\",\n                \"lsoa\": \"Brighton and Hove 027E\",\n                \"msoa\": \"Brighton and Hove 027\",\n                \"incode\": \"1AA\",\n                \"outcode\": \"BN1\",\n                \"parliamentary_constituency\": \"Brighton Pavilion\",\n                \"parliamentary_constituency_2024\": \"Brighton Pavilion\",\n                \"admin_district\": \"Brighton and Hove\",\n                \"parish\": \"Brighton and Hove, unparished area\",\n                \"admin_county\": null,\n                \"date_of_introduction\": \"199002\",\n                \"admin_ward\": \"West Hill & North Laine\",\n                \"ced\": null,\n                \"ccg\": \"NHS Sussex\",\n                \"nuts\": \"Brighton and Hove\",\n                \"pfa\": \"Sussex\",\n                \"codes\": {\n                    \"admin_district\": \"E06000043\",\n                    \"admin_county\": \"E99999999\",\n                    \"admin_ward\": \"E05015415\",\n                    \"parish\": \"E43000034\",\n                    \"parliamentary_constituency\": \"E14001130\",\n                    \"parliamentary_constituency_2024\": \"E14001130\",\n                    \"ccg\": \"E38000021\",\n                    \"ccg_id\": \"09D\",\n                    \"ced\": \"E99999999\",\n                    \"nuts\": \"TLJ21\",\n                    \"lsoa\": \"E01016969\",\n                    \"msoa\": \"E02003517\",\n                    \"lau2\": \"E06000043\",\n                    \"pfa\": \"E23000033\"\n                }\n            }\n        },\n        {\n            \"query\": \"FY1 1AA\",\n            \"result\": null\n        },\n        {\n            \"query\": \"GL1 1AA\",\n            \"result\": null\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Postcode Lookup",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Assert response body is an object\", function () {\r",
+							"     pm.expect(jsonData).to.be.an('object');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Assert response status code exists and is indeed 200\", function () {\r",
+							"    pm.expect(jsonData.status).to.exist;\r",
+							"    pm.expect(jsonData.status).to.equal(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Assert postcode result property exists and is an object\", function () {\r",
+							"    pm.expect(jsonData.result).to.exist;\r",
+							"    pm.expect(jsonData.result).to.be.an('object');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Assert postcode result postcode exists and is a string\", function () {\r",
+							"    pm.expect(jsonData.result.postcode).to.exist;\r",
+							"    pm.expect(jsonData.result.postcode).to.be.a('string');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Assert postcode result quality exists and is a number\", function () {\r",
+							"    pm.expect(jsonData.result.quality).to.exist;\r",
+							"    pm.expect(jsonData.result.quality).to.be.a('number');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Assert postcode result eastings exists and is a number\", function () {\r",
+							"    pm.expect(jsonData.result.eastings).to.exist;\r",
+							"    pm.expect(jsonData.result.eastings).to.be.a('number');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Assert postcode result eastings exists and is a number\", function () {\r",
+							"    pm.expect(jsonData.result.northings).to.exist;\r",
+							"    pm.expect(jsonData.result.northings).to.be.a('number');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Assert postcode result country exists and is a string\", function () {\r",
+							"    pm.expect(jsonData.result.country).to.exist;\r",
+							"    pm.expect(jsonData.result.country).to.be.a('string');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Assert postcode result NHS location exists and is a string\", function () {\r",
+							"    pm.expect(jsonData.result.nhs_ha).to.exist;\r",
+							"    pm.expect(jsonData.result.nhs_ha).to.be.a('string');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Assert postcode result longitude exists and is a number\", function () {\r",
+							"    pm.expect(jsonData.result.longitude).to.exist;\r",
+							"    pm.expect(jsonData.result.longitude).to.be.a('number');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Assert postcode result latitude exists and is a number\", function () {\r",
+							"    pm.expect(jsonData.result.latitude).to.exist;\r",
+							"    pm.expect(jsonData.result.latitude).to.be.a('number');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Assert postcode result european electoral region exists and is a string\", function () {\r",
+							"    pm.expect(jsonData.result.european_electoral_region).to.exist;\r",
+							"    pm.expect(jsonData.result.european_electoral_region).to.be.a('string');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Assert postcode result primary care trust exists and is a string\", function () {\r",
+							"    pm.expect(jsonData.result.primary_care_trust).to.exist;\r",
+							"    pm.expect(jsonData.result.primary_care_trust).to.be.a('string');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Assert postcode result region exists and is a string\", function () {\r",
+							"    pm.expect(jsonData.result.region).to.exist;\r",
+							"    pm.expect(jsonData.result.region).to.be.a('string');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Assert postcode result LSOA exists and is a string\", function () {\r",
+							"    pm.expect(jsonData.result.lsoa).to.exist;\r",
+							"    pm.expect(jsonData.result.lsoa).to.be.a('string');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Assert postcode result MSOA exists and is a string\", function () {\r",
+							"    pm.expect(jsonData.result.msoa).to.exist;\r",
+							"    pm.expect(jsonData.result.msoa).to.be.a('string');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Assert postcode result incode exists and is a string\", function () {\r",
+							"    pm.expect(jsonData.result.incode).to.exist;\r",
+							"    pm.expect(jsonData.result.incode).to.be.a('string');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Assert postcode result outcode exists and is a string\", function () {\r",
+							"    pm.expect(jsonData.result.outcode).to.exist;\r",
+							"    pm.expect(jsonData.result.outcode).to.be.a('string');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Assert postcode result parliamentary constituency exists and is a string\", function () {\r",
+							"    pm.expect(jsonData.result.parliamentary_constituency).to.exist;\r",
+							"    pm.expect(jsonData.result.parliamentary_constituency).to.be.a('string');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Assert postcode result parliamentary constituency (2024) exists and is a string\", function () {\r",
+							"    pm.expect(jsonData.result.parliamentary_constituency_2024).to.exist;\r",
+							"    pm.expect(jsonData.result.parliamentary_constituency_2024).to.be.a('string');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Assert postcode result admin district exists and is a string\", function () {\r",
+							"    pm.expect(jsonData.result.admin_district).to.exist;\r",
+							"    pm.expect(jsonData.result.admin_district).to.be.a('string');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Assert postcode result parish exists and is a string\", function () {\r",
+							"    pm.expect(jsonData.result.parish).to.exist;\r",
+							"    pm.expect(jsonData.result.parish).to.be.a('string');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Assert postcode result admin county exists and is a string\", function () {\r",
+							"    pm.expect(jsonData.result.admin_county).to.exist;\r",
+							"    pm.expect(jsonData.result.admin_county).to.be.a('string');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Assert postcode result date of introduction exists and is a string\", function () {\r",
+							"    pm.expect(jsonData.result.date_of_introduction).to.exist;\r",
+							"    pm.expect(jsonData.result.date_of_introduction).to.be.a('string');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Assert postcode result admin ward exists and is a string\", function () {\r",
+							"    pm.expect(jsonData.result.admin_ward).to.exist;\r",
+							"    pm.expect(jsonData.result.admin_ward).to.be.a('string');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Assert postcode result CED exists and is a string\", function () {\r",
+							"    pm.expect(jsonData.result.ced).to.exist;\r",
+							"    pm.expect(jsonData.result.ced).to.be.a('string');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Assert postcode result CCG exists and is a string\", function () {\r",
+							"    pm.expect(jsonData.result.ccg).to.exist;\r",
+							"    pm.expect(jsonData.result.ccg).to.be.a('string');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Assert postcode result NUTS exists and is a string\", function () {\r",
+							"    pm.expect(jsonData.result.nuts).to.exist;\r",
+							"    pm.expect(jsonData.result.nuts).to.be.a('string');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Assert postcode result PFA exists and is a string\", function () {\r",
+							"    pm.expect(jsonData.result.pfa).to.exist;\r",
+							"    pm.expect(jsonData.result.pfa).to.be.a('string');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Assert postcode result codes property exists and is an object\", function () {\r",
+							"    pm.expect(jsonData.result.codes).to.exist;\r",
+							"    pm.expect(jsonData.result.codes).to.be.an('object');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Assert postcode result codes (admin district) exists and is a string\", function () {\r",
+							"    pm.expect(jsonData.result.codes.admin_district).to.exist;\r",
+							"    pm.expect(jsonData.result.codes.admin_district).to.be.a('string');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Assert postcode result codes (admin county) exists and is a string\", function () {\r",
+							"    pm.expect(jsonData.result.codes.admin_county).to.exist;\r",
+							"    pm.expect(jsonData.result.codes.admin_county).to.be.a('string');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Assert postcode result codes (admin ward) exists and is a string\", function () {\r",
+							"    pm.expect(jsonData.result.codes.admin_ward).to.exist;\r",
+							"    pm.expect(jsonData.result.codes.admin_ward).to.be.a('string');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Assert postcode result codes (parish) exists and is a string\", function () {\r",
+							"    pm.expect(jsonData.result.codes.parish).to.exist;\r",
+							"    pm.expect(jsonData.result.codes.parish).to.be.a('string');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Assert postcode result codes (parliamentary constituency) exists and is a string\", function () {\r",
+							"    pm.expect(jsonData.result.codes.parliamentary_constituency).to.exist;\r",
+							"    pm.expect(jsonData.result.codes.parliamentary_constituency).to.be.a('string');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Assert postcode result codes (parliamentary constituency (2024)) exists and is a string\", function () {\r",
+							"    pm.expect(jsonData.result.codes.parliamentary_constituency_2024).to.exist;\r",
+							"    pm.expect(jsonData.result.codes.parliamentary_constituency_2024).to.be.a('string');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Assert postcode result codes (CCG) exists and is a string\", function () {\r",
+							"    pm.expect(jsonData.result.codes.ccg).to.exist;\r",
+							"    pm.expect(jsonData.result.codes.ccg).to.be.a('string');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Assert postcode result codes (CCG ID) exists and is a string\", function () {\r",
+							"    pm.expect(jsonData.result.codes.ccg_id).to.exist;\r",
+							"    pm.expect(jsonData.result.codes.ccg_id).to.be.a('string');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Assert postcode result codes (CED) exists and is a string\", function () {\r",
+							"    pm.expect(jsonData.result.codes.ced).to.exist;\r",
+							"    pm.expect(jsonData.result.codes.ced).to.be.a('string');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Assert postcode result codes (NUTS) exists and is a string\", function () {\r",
+							"    pm.expect(jsonData.result.codes.nuts).to.exist;\r",
+							"    pm.expect(jsonData.result.codes.nuts).to.be.a('string');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Assert postcode result codes (LSOA) exists and is a string\", function () {\r",
+							"    pm.expect(jsonData.result.codes.lsoa).to.exist;\r",
+							"    pm.expect(jsonData.result.codes.lsoa).to.be.a('string');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Assert postcode result codes (MSOA) exists and is a string\", function () {\r",
+							"    pm.expect(jsonData.result.codes.msoa).to.exist;\r",
+							"    pm.expect(jsonData.result.codes.msoa).to.be.a('string');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Assert postcode result codes (LAU2) exists and is a string\", function () {\r",
+							"    pm.expect(jsonData.result.codes.lau2).to.exist;\r",
+							"    pm.expect(jsonData.result.codes.lau2).to.be.a('string');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Assert postcode result codes (PFA) exists and is a string\", function () {\r",
+							"    pm.expect(jsonData.result.codes.pfa).to.exist;\r",
+							"    pm.expect(jsonData.result.codes.pfa).to.be.a('string');\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const postcodes = [\"GL7 1AA\", \"SW1 1AA\", \"SW2 1TL\"];\r",
+							"\r",
+							"function getRandomItem(array) {\r",
+							"    return array[Math.floor(Math.random() * array.length)];\r",
+							"}\r",
+							"\r",
+							"let randomPostcode = getRandomItem(postcodes);\r",
+							"\r",
+							"// random ID setter\r",
+							"pm.environment.set(\"randomPostcode\", randomPostcode);"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URI}}/postcodes/:postcode",
+					"host": [
+						"{{BASE_URI}}"
+					],
+					"path": [
+						"postcodes",
+						":postcode"
+					],
+					"variable": [
+						{
+							"key": "postcode",
+							"value": "{{randomPostcode}}"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200 OK",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URI}}/postcodes/:postcode",
+							"host": [
+								"{{BASE_URI}}"
+							],
+							"path": [
+								"postcodes",
+								":postcode"
+							],
+							"variable": [
+								{
+									"key": "postcode",
+									"value": "{{randomPostcode}}"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sat, 26 Oct 2024 06:45:10 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-gnu",
+							"value": "Michael J Blanchard"
+						},
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"3fe-IjuFmLkqKJPFu04/fWLJerMfzFM\""
+						},
+						{
+							"key": "CF-Cache-Status",
+							"value": "MISS"
+						},
+						{
+							"key": "Report-To",
+							"value": "{\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=1nkZbWn3Mhgi25PF0dXy6ogHI1Y8z6q%2BZ5rZ7QBPrgRpBVdgJPBSiNvqY3Ogm5HJdIgJwpGN5VIdsoxB%2FdGBGyxuCIvvcjcm%2F%2FhWakgvkoLrYEpCNwdRnlq0KvmgRODxTzc%3D\"}],\"group\":\"cf-nel\",\"max_age\":604800}"
+						},
+						{
+							"key": "NEL",
+							"value": "{\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Server",
+							"value": "cloudflare"
+						},
+						{
+							"key": "CF-RAY",
+							"value": "8d887b65aab85956-IAD"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "br"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": 200,\n    \"result\": {\n        \"postcode\": \"EX16 5BL\",\n        \"quality\": 1,\n        \"eastings\": 294478,\n        \"northings\": 112252,\n        \"country\": \"England\",\n        \"nhs_ha\": \"South West\",\n        \"longitude\": -3.50197,\n        \"latitude\": 50.900064,\n        \"european_electoral_region\": \"South West\",\n        \"primary_care_trust\": \"Devon\",\n        \"region\": \"South West\",\n        \"lsoa\": \"Mid Devon 005C\",\n        \"msoa\": \"Mid Devon 005\",\n        \"incode\": \"5BL\",\n        \"outcode\": \"EX16\",\n        \"parliamentary_constituency\": \"Tiverton and Minehead\",\n        \"parliamentary_constituency_2024\": \"Tiverton and Minehead\",\n        \"admin_district\": \"Mid Devon\",\n        \"parish\": \"Tiverton\",\n        \"admin_county\": \"Devon\",\n        \"date_of_introduction\": \"198001\",\n        \"admin_ward\": \"Tiverton Westexe\",\n        \"ced\": \"Tiverton West\",\n        \"ccg\": \"NHS Devon\",\n        \"nuts\": \"Mid Devon\",\n        \"pfa\": \"Devon & Cornwall\",\n        \"codes\": {\n            \"admin_district\": \"E07000042\",\n            \"admin_county\": \"E10000008\",\n            \"admin_ward\": \"E05014813\",\n            \"parish\": \"E04003055\",\n            \"parliamentary_constituency\": \"E14001548\",\n            \"parliamentary_constituency_2024\": \"E14001548\",\n            \"ccg\": \"E38000230\",\n            \"ccg_id\": \"15N\",\n            \"ced\": \"E58000304\",\n            \"nuts\": \"TLK43\",\n            \"lsoa\": \"E01020079\",\n            \"msoa\": \"E02004168\",\n            \"lau2\": \"E07000042\",\n            \"pfa\": \"E23000035\"\n        }\n    }\n}"
+				}
+			]
+		}
+	]
+}

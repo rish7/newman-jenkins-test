@@ -1,0 +1,16 @@
+{
+	"id": "2cd299f1-74d7-4ac5-bb9e-624f180c9e35",
+	"name": "postcodes.ioAPIEnvironment",
+	"values": [
+		{
+			"key": "BASE_URI",
+			"value": "https://api.postcodes.io",
+			"type": "default",
+			"enabled": true
+		}
+	],
+	"color": null,
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2025-12-23T23:11:20.026Z",
+	"_postman_exported_using": "Postman/11.77.1"
+}

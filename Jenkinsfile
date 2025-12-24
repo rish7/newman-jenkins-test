@@ -11,10 +11,9 @@ pipeline {
             steps {
                 sh 'newman --version'
                 sh """
-                newman run postcodes.io_collection.json -e ${ENVIRONMENT}_environment.json -r cli,html --reporter-html-export output/report.html --bail --delay-request 500
-
                 newman run postcodes.io_collection.json -e ${ENVIRONMENT}_environment.json -r cli,htmlextra --reporter-htmlextra-export output/htmlextra-report.html --bail --delay-request 500
                 """
+                // newman run postcodes.io_collection.json -e ${ENVIRONMENT}_environment.json -r cli,html --reporter-html-export output/report.html --bail --delay-request 500
                 //newman run postcodes.io_collection.json -e ${ENVIRONMENT}_environment.json -r cli,htmlextra --reporter-htmlextra-export output/report.html --bail --delay-request 500
             }
         }

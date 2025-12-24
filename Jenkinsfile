@@ -13,7 +13,7 @@ pipeline {
                 sh """
                 newman run postpostcodes.io_collection.json -e ${ENVIRONMENT}_environment.json -r cli,html --reporter-html-export output/report.html --bail
                 """
-                //newman run postpostcodes.io_collection.json -e ${ENVIRONMENT}_environment.json.json -r cli,htmlextra --reporter-htmlextra-export output/report.html --bail
+                //newman run postpostcodes.io_collection.json -e ${ENVIRONMENT}_environment.json -r cli,htmlextra --reporter-htmlextra-export output/report.html --bail
             }
         }
     }

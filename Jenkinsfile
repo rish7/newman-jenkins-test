@@ -4,8 +4,8 @@ pipeline {
         nodejs 'NodeJS-Latest'  // Matches the name you gave
     }
     triggers {
-        cron('H/2 * * * *')  // Every ~2 minutes
-        //cron('H 9 * * *') // Every day 9am
+        //cron('H/2 * * * *')  // Every ~2 minutes
+        cron('0 9 * * *') // Every day 9am
     }
     parameters {
         choice(name: 'ENVIRONMENT', choices: ['dev', 'staging', 'prod'], description: 'Select environment')

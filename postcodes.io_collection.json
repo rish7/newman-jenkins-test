@@ -15,8 +15,8 @@
 						"exec": [
 							"const postcodes = [\r",
 							"   \r",
-							"    \"GL7 1AA\", \"GL7 1TL\", \"SN2 1FF\", \"GL1 1RA\", \"SN1 2AA\",\r",
-							"    \"MK1 1FD\", \"SN1 1BB\", \"LA1 1AA\", \"LD1 1AA\",\r",
+							"    \"GL7 1AA\", \"GL7 1TL\", \"SN1 2AA\", \"GL1 1RA\", \r",
+							"    \"MK1 1FD\", \"LD1 1AA\",\r",
 							"  ];\r",
 							"\r",
 							"function getRandomItem(array) {\r",
@@ -420,7 +420,7 @@
 					"listen": "prerequest",
 					"script": {
 						"exec": [
-							"const postcodes = [\"GL7 1AA\", \"SN1 1AA\", \"GL7 1TL\"];\r",
+							"const postcodes = [\"GL7 1AA\", \"SN1 2AA\", \"GL7 1TL\"];\r",
 							"\r",
 							"function getRandomItem(array) {\r",
 							"    return array[Math.floor(Math.random() * array.length)];\r",
